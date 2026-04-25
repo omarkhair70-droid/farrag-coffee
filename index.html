@@ -53,8 +53,8 @@
       <section class="section" id="catalog">
         <div class="container">
           <div class="section-head reveal">
-            <h2>اطلب البن اللي يناسب مزاجك</h2>
-            <p>عبوات فراج الأصلية بتصميم Premium.</p>
+            <h2>اختار قهوتك على مزاجك</h2>
+            <p>اختار النوع والكمية، وابعتهولنا على واتساب بخطوة واحدة.</p>
           </div>
 
           <div class="catalog-controls reveal">
@@ -93,7 +93,7 @@
           </div>
 
           <div class="menu-note reveal">
-            <p>المنيو الكامل متاح في الفرع أو عبر واتساب</p>
+            <p>المنيو الكامل متاح داخل الفروع أو عبر واتساب.</p>
             <a class="btn btn-outline" href="https://wa.me/201005009908" target="_blank" rel="noopener">اطلب المنيو الكامل</a>
           </div>
         </div>
@@ -103,9 +103,10 @@
         <div class="container">
           <div class="section-head reveal">
             <h2>آراء عملائنا</h2>
-            <p>آراء حقيقية من عملائنا على فيسبوك</p>
+            <p>آراء مختصرة عن الجودة والطعم والخدمة.</p>
           </div>
           <div class="reviews-grid" id="reviewsGrid"></div>
+          <p class="reviews-note">آراء حقيقية من عملائنا على فيسبوك.</p>
         </div>
       </section>
 
@@ -113,30 +114,58 @@
         <div class="container reveal">
           <h2>تواصل معنا</h2>
           <div class="contact-grid">
-            <a class="contact-card" href="https://www.facebook.com/Faragcoffee" target="_blank" rel="noopener">فيسبوك: Faragcoffee</a>
-            <a class="contact-card" href="mailto:basilmohamed227@gmail.com">البريد الإلكتروني: basilmohamed227@gmail.com</a>
-            <a class="contact-card" href="https://wa.me/201005009908" target="_blank" rel="noopener">الفرع 1 (واتساب): 01005009908</a>
-            <a class="contact-card" href="https://wa.me/201008006460" target="_blank" rel="noopener">الفرع 2 (واتساب): 01008006460</a>
-          </div>
-          <div class="cta-actions">
-            <a class="btn btn-primary" href="https://wa.me/201005009908" target="_blank" rel="noopener">واتساب الرئيسي</a>
+            <a class="contact-card" href="https://www.facebook.com/Faragcoffee" target="_blank" rel="noopener">فيسبوك<br /><span>facebook.com/Faragcoffee</span></a>
+            <a class="contact-card" href="mailto:basilmohamed227@gmail.com">البريد الإلكتروني<br /><span>basilmohamed227@gmail.com</span></a>
+            <a class="contact-card" href="https://wa.me/201005009908" target="_blank" rel="noopener">واتساب الفرع الأول<br /><span>01005009908</span></a>
+            <a class="contact-card" href="https://wa.me/201008006460" target="_blank" rel="noopener">واتساب الفرع الثاني<br /><span>01008006460</span></a>
           </div>
         </div>
       </section>
     </main>
 
-    <div class="mobile-cart" id="mobileCart" aria-live="polite">
-      <div>
-        <p class="cart-label">السلة</p>
-        <p class="cart-count">العناصر: <span id="cartCount">0</span></p>
+    <div class="order-bar" id="orderBar" aria-live="polite">
+      <p class="order-empty" id="orderEmpty">أضف منتجاتك للسلة وابدأ الطلب.</p>
+      <div class="order-bar-content" id="orderBarContent" hidden>
+        <div class="order-stats">
+          <p>عدد المنتجات</p>
+          <strong id="cartCount">0</strong>
+        </div>
+        <div class="order-stats">
+          <p>الإجمالي</p>
+          <strong id="cartTotal">0 ج.م</strong>
+        </div>
       </div>
-      <button id="sendOrderBtn" class="btn btn-primary" type="button" disabled>إرسال الطلب على واتساب</button>
+      <button id="checkoutBtn" class="btn btn-primary" type="button" disabled>إتمام الطلب</button>
     </div>
 
     <div class="floating-actions" aria-label="إجراءات سريعة">
       <a class="float-btn whatsapp" href="https://wa.me/201005009908" target="_blank" rel="noopener" aria-label="واتساب">واتساب</a>
       <a class="float-btn call" href="tel:01005009908" aria-label="اتصال">اتصال</a>
     </div>
+
+    <dialog id="orderDialog" class="order-dialog">
+      <div class="order-dialog-head">
+        <h3>تأكيد الطلب</h3>
+        <button type="button" class="close-zoom" id="closeOrderDialog" aria-label="إغلاق">×</button>
+      </div>
+      <div id="orderSummaryList" class="order-summary-list"></div>
+      <div class="order-total-line">
+        <span>الإجمالي</span>
+        <strong id="orderModalTotal">0 ج.م</strong>
+      </div>
+      <div class="order-fields">
+        <label for="customerName">الاسم</label>
+        <input id="customerName" type="text" placeholder="اسم العميل (اختياري)" />
+        <label for="customerPhone">رقم الهاتف</label>
+        <input id="customerPhone" type="tel" placeholder="رقم للتواصل (اختياري)" />
+        <label for="orderNotes">ملاحظات الطلب</label>
+        <textarea id="orderNotes" rows="3" placeholder="أي تفاصيل إضافية (اختياري)"></textarea>
+      </div>
+      <div class="order-dialog-actions">
+        <button id="sendOrderBtn" class="btn btn-primary" type="button">إرسال الطلب على واتساب</button>
+        <button id="continueShoppingBtn" class="btn btn-outline" type="button">متابعة التسوق</button>
+      </div>
+    </dialog>
 
     <dialog id="zoomDialog" class="zoom-dialog">
       <button type="button" class="close-zoom" id="closeZoom" aria-label="إغلاق">×</button>
