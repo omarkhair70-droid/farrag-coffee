@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900">
+<rect width="900" height="900" fill="#efe1d2"/>
+<rect x="250" y="80" width="400" height="740" rx="36" fill="#351f13"/>
+<rect x="300" y="130" width="300" height="180" rx="20" fill="#f7ead8"/>
+<text x="450" y="220" text-anchor="middle" font-family="Cairo" font-size="62" font-weight="800" fill="#5f3517">تركي</text>
+<text x="450" y="280" text-anchor="middle" font-family="Cairo" font-size="42" font-weight="700" fill="#2a160d">بن فراج</text>
+<rect x="300" y="390" width="300" height="140" rx="70" fill="#9f6532"/>
+<text x="450" y="478" text-anchor="middle" font-family="Cairo" font-size="62" font-weight="800" fill="#fff8ed">محوج</text>
+<text x="450" y="650" text-anchor="middle" font-family="Cairo" font-size="54" fill="#f5e2c7">250 جم</text>
+</svg>

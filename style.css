@@ -51,7 +51,7 @@ img {
 }
 
 .section {
-  padding: 2.2rem 0;
+  padding: 2.3rem 0;
 }
 
 .site-header {
@@ -64,16 +64,16 @@ img {
 }
 
 .nav-wrap {
-  min-height: 68px;
+  min-height: 72px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.7rem;
 }
 
-.logo {
-  font-size: 1.3rem;
-  font-weight: 800;
+.logo img {
+  width: 130px;
+  height: auto;
 }
 
 .nav {
@@ -141,7 +141,8 @@ img {
   flex-wrap: wrap;
 }
 
-.hero-card {
+.hero-card,
+.menu-card {
   border-radius: 24px;
   overflow: hidden;
   border: 1px solid rgba(184, 135, 70, 0.3);
@@ -205,13 +206,17 @@ img {
   font-family: inherit;
 }
 
-.product-grid {
+.product-grid,
+.reviews-grid,
+.contact-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.95rem;
+  gap: 1rem;
 }
 
-.product-card {
+.product-card,
+.review-card,
+.contact-card {
   background: var(--card);
   border: 1px solid rgba(184, 135, 70, 0.23);
   border-radius: var(--radius);
@@ -221,12 +226,12 @@ img {
 
 .product-card img {
   width: 100%;
-  height: 190px;
+  height: 220px;
   object-fit: cover;
 }
 
 .product-content {
-  padding: 0.9rem;
+  padding: 0.95rem;
 }
 
 .product-title {
@@ -250,6 +255,10 @@ img {
   font-weight: 700;
 }
 
+.blend {
+  background: rgba(42, 22, 13, 0.1);
+}
+
 .price {
   margin: 0 0 0.7rem;
   font-size: 1.12rem;
@@ -271,44 +280,32 @@ img {
   background: #f3e9de;
 }
 
-.menu-tabs {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  margin-bottom: 1rem;
-}
-
-.menu-tab {
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: #fff;
-  padding: 0.45rem 0.85rem;
-  font-family: inherit;
-  font-weight: 700;
-}
-
-.menu-tab.active {
-  background: var(--coffee);
-  color: #fff;
-}
-
-.menu-preview {
+.menu-slider {
   display: grid;
-  gap: 1rem;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.slider-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: #fff;
+  font-size: 1.8rem;
+  line-height: 1;
 }
 
 .menu-card {
   margin: 0;
-  border-radius: 18px;
-  overflow: hidden;
-  border: 1px solid rgba(184, 135, 70, 0.35);
-  box-shadow: var(--shadow);
 }
 
 .menu-card img {
   width: 100%;
-  height: 220px;
+  min-height: 220px;
   object-fit: cover;
+  cursor: zoom-in;
 }
 
 .menu-note {
@@ -316,39 +313,33 @@ img {
   border-radius: var(--radius);
   border: 1px solid rgba(42, 22, 13, 0.1);
   padding: 1rem;
+  margin-top: 1rem;
 }
 
-.menu-note h3 {
+.menu-note p {
   margin-top: 0;
 }
 
-.branches-grid {
-  display: grid;
-  gap: 1rem;
-}
-
-.branch-card {
-  background: var(--card);
-  border: 1px solid rgba(184, 135, 70, 0.27);
-  border-radius: var(--radius);
+.review-card {
   padding: 1rem;
 }
 
-.branch-card h3 {
-  margin-top: 0;
+.review-card h3 {
+  margin: 0;
 }
 
-.branch-phone {
-  color: #8a5419;
-  font-size: 1.06rem;
+.review-card p {
+  margin: 0.45rem 0;
+}
+
+.rating {
+  color: #a1662f;
   font-weight: 800;
 }
 
-.branch-actions {
-  display: flex;
-  gap: 0.6rem;
-  margin-top: 0.85rem;
-  flex-wrap: wrap;
+.contact-card {
+  padding: 0.9rem 1rem;
+  font-weight: 700;
 }
 
 .final-cta {
@@ -416,6 +407,34 @@ img {
   color: #fff;
 }
 
+.zoom-dialog {
+  border: none;
+  border-radius: 16px;
+  padding: 0.8rem;
+  background: #1f120b;
+}
+
+.zoom-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.zoom-dialog img {
+  max-width: min(92vw, 920px);
+  max-height: 84vh;
+}
+
+.close-zoom {
+  position: absolute;
+  top: 0.4rem;
+  left: 0.4rem;
+  border: none;
+  background: #fff;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 1.3rem;
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(12px);
@@ -445,13 +464,9 @@ img {
     align-items: center;
   }
 
-  .product-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.1rem;
-  }
-
-  .menu-preview,
-  .branches-grid {
+  .product-grid,
+  .reviews-grid,
+  .contact-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -463,7 +478,6 @@ img {
 @media (min-width: 1024px) {
   .product-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.2rem;
   }
 
   .btn:hover {
