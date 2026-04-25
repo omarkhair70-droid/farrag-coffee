@@ -8,7 +8,7 @@ const products = [
     blendLabel: 'سادة',
     weight: '250 جم',
     price: 60,
-    image: 'images/package-brazil-sada.svg'
+    image: 'product-sada.jpeg'
   },
   {
     id: 'brazil-mhwg',
@@ -17,7 +17,7 @@ const products = [
     blendLabel: 'محوج',
     weight: '250 جم',
     price: 60,
-    image: 'images/package-brazil-mohawag.svg'
+    image: 'product-mahmoog.jpeg'
   },
   {
     id: 'extra-sada',
@@ -27,7 +27,7 @@ const products = [
     weight: '250 جم',
     price: 55,
     offer: true,
-    image: 'images/package-extra-sada.svg'
+    image: 'product-sada.jpeg'
   },
   {
     id: 'turki-mhwg',
@@ -36,7 +36,7 @@ const products = [
     blendLabel: 'محوج',
     weight: '250 جم',
     price: 50,
-    image: 'images/package-turki-mohawag.svg'
+    image: 'product-mahmoog.jpeg'
   },
   {
     id: 'yemeni-sada',
@@ -45,7 +45,7 @@ const products = [
     blendLabel: 'سادة',
     weight: '250 جم',
     price: 80,
-    image: 'images/package-yemeni-sada.svg'
+    image: 'product-sada.jpeg'
   },
   {
     id: 'espresso',
@@ -54,29 +54,39 @@ const products = [
     blendLabel: 'سادة',
     weight: '1000 جم',
     price: 300,
-    image: 'images/package-espresso.svg'
+    image: 'product-sada.jpeg'
   }
 ];
 
 const reviews = [
   {
-    name: 'سارة أحمد',
-    text: 'البن التركي ممتاز وريحتُه قوية جدًا.. تجربة راقية فعلًا.',
+    name: 'عميل من فيسبوك',
+    text: 'الطعم ثابت وجودة التحميص ممتازة جدًا. هطلب تاني إن شاء الله.',
     rating: '★★★★★'
   },
   {
-    name: 'أحمد جمال',
-    text: 'طلبت برازيلي محوج ووصل بسرعة والطعم ثابت كل مرة.',
+    name: 'عميلة من فيسبوك',
+    text: 'بن محوج ممتاز وريحتُه قوية والتوصيل كان سريع ومنظم.',
     rating: '❤️❤️❤️❤️❤️'
   },
   {
-    name: 'مريم خالد',
-    text: 'الخدمة ممتازة والمنيو متنوع جدًا داخل الفرع.',
+    name: 'عميل من فيسبوك',
+    text: 'تعامل محترم جدًا وجودة البن تستاهل التجربة.',
+    rating: '★★★★★'
+  },
+  {
+    name: 'عميلة من فيسبوك',
+    text: 'أحبينا بن سادة وطعمه نضيف جدًا مع القهوة العربي.',
+    rating: '❤️❤️❤️❤️'
+  },
+  {
+    name: 'عميل من فيسبوك',
+    text: 'جربت أكثر من نوع وكلهم ممتازين خصوصًا المحوج.',
     rating: '★★★★★'
   }
 ];
 
-const menuImages = ['images/menu-1.svg', 'images/menu-2.svg', 'images/menu-3.svg'];
+const menuImages = ['menu-1.jpeg', 'menu-2.jpeg', 'menu-3.jpeg'];
 
 const cart = new Map();
 let activeFilter = 'الكل';
