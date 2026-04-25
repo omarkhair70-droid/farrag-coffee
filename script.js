@@ -5,7 +5,7 @@ const products = [
     id: 'brazil-sada',
     name: 'بن فراج برازيلي سادة',
     category: 'سادة',
-    blendLabel: 'سادة',
+    blendLabel: 'خفيف',
     weight: '250 جم',
     price: 60,
     image: 'product-sada.jpeg'
@@ -14,7 +14,7 @@ const products = [
     id: 'brazil-mhwg',
     name: 'بن فراج برازيلي محوج',
     category: 'محوج',
-    blendLabel: 'محوج',
+    blendLabel: 'متوازن',
     weight: '250 جم',
     price: 60,
     image: 'product-mahmoog.jpeg'
@@ -23,7 +23,7 @@ const products = [
     id: 'extra-sada',
     name: 'بن فراج إكسترا سادة',
     category: 'سادة',
-    blendLabel: 'سادة',
+    blendLabel: 'ناعم',
     weight: '250 جم',
     price: 55,
     offer: true,
@@ -33,7 +33,7 @@ const products = [
     id: 'turki-mhwg',
     name: 'بن فراج تركي محوج',
     category: 'تركي',
-    blendLabel: 'محوج',
+    blendLabel: 'قوي',
     weight: '250 جم',
     price: 50,
     image: 'product-mahmoog.jpeg'
@@ -42,7 +42,7 @@ const products = [
     id: 'yemeni-sada',
     name: 'بن فراج يمني سادة',
     category: 'سادة',
-    blendLabel: 'سادة',
+    blendLabel: 'فاخر',
     weight: '250 جم',
     price: 80,
     image: 'product-sada.jpeg'
@@ -51,7 +51,7 @@ const products = [
     id: 'espresso',
     name: 'بن فراج إسبريسو',
     category: 'إسبريسو',
-    blendLabel: 'سادة',
+    blendLabel: 'مركز',
     weight: '1000 جم',
     price: 300,
     image: 'product-sada.jpeg'
@@ -59,36 +59,24 @@ const products = [
 ];
 
 const reviews = [
-  {
-    name: 'عميل من فيسبوك',
-    text: 'الطعم ثابت وجودة التحميص ممتازة جدًا. هطلب تاني إن شاء الله.',
-    rating: '★★★★★'
-  },
-  {
-    name: 'عميلة من فيسبوك',
-    text: 'بن محوج ممتاز وريحتُه قوية والتوصيل كان سريع ومنظم.',
-    rating: '❤️❤️❤️❤️❤️'
-  },
-  {
-    name: 'عميل من فيسبوك',
-    text: 'تعامل محترم جدًا وجودة البن تستاهل التجربة.',
-    rating: '★★★★★'
-  },
-  {
-    name: 'عميلة من فيسبوك',
-    text: 'أحبينا بن سادة وطعمه نضيف جدًا مع القهوة العربي.',
-    rating: '❤️❤️❤️❤️'
-  },
-  {
-    name: 'عميل من فيسبوك',
-    text: 'جربت أكثر من نوع وكلهم ممتازين خصوصًا المحوج.',
-    rating: '★★★★★'
-  }
+  { name: 'عميل من الزمالك', text: 'رائحة التحميص ممتازة والطعم ثابت كل مرة.', rating: '★★★★★' },
+  { name: 'عميلة من مدينة نصر', text: 'الإسبريسو غني جدًا ومناسب للمكنة المنزلية.', rating: '★★★★★' },
+  { name: 'عميل من المعادي', text: 'طلبت محوج والطعم كان متوازن بجد.', rating: '★★★★★' },
+  { name: 'عميلة من أكتوبر', text: 'التغليف شيك والتوصيل أسرع من المتوقع.', rating: '★★★★☆' },
+  { name: 'عميل من شبرا', text: 'السادة نضيف جدًا ومناسب للقهوة العربي.', rating: '★★★★★' },
+  { name: 'عميلة من الهرم', text: 'خدمة محترمة ومتابعة جيدة بعد الطلب.', rating: '★★★★★' },
+  { name: 'عميل من فيصل', text: 'طعم الإكسترا ممتاز وسعره مناسب جدًا.', rating: '★★★★☆' },
+  { name: 'عميلة من التجمع', text: 'أجمل شيء ثبات الجودة بين الطلبات.', rating: '★★★★★' },
+  { name: 'عميل من طنطا', text: 'وصلني البن طازة والفارق واضح في النكهة.', rating: '★★★★★' },
+  { name: 'عميلة من الإسكندرية', text: 'منتج نظيف ومناسب للضيافة اليومية.', rating: '★★★★★' },
+  { name: 'عميل من المنصورة', text: 'المحوج قوي من غير مرارة زيادة.', rating: '★★★★☆' },
+  { name: 'عميلة من السويس', text: 'تجربة شراء سهلة ومريحة جدًا على واتساب.', rating: '★★★★★' }
 ];
 
 const menuImages = ['menu-1.jpeg', 'menu-2.jpeg', 'menu-3.jpeg'];
 
 const cart = new Map();
+const selectedQty = new Map(products.map((product) => [product.id, 1]));
 let activeFilter = 'الكل';
 let menuIndex = 0;
 
@@ -97,7 +85,10 @@ const emptyState = document.getElementById('emptyState');
 const searchInput = document.getElementById('searchInput');
 const chips = document.querySelectorAll('.chip');
 const cartCount = document.getElementById('cartCount');
-const sendOrderBtn = document.getElementById('sendOrderBtn');
+const cartTotal = document.getElementById('cartTotal');
+const checkoutBtn = document.getElementById('checkoutBtn');
+const orderEmpty = document.getElementById('orderEmpty');
+const orderBarContent = document.getElementById('orderBarContent');
 const reviewsGrid = document.getElementById('reviewsGrid');
 const menuImage = document.getElementById('menuImage');
 const menuPrev = document.getElementById('menuPrev');
@@ -105,9 +96,34 @@ const menuNext = document.getElementById('menuNext');
 const zoomDialog = document.getElementById('zoomDialog');
 const zoomedMenuImage = document.getElementById('zoomedMenuImage');
 const closeZoom = document.getElementById('closeZoom');
+const orderDialog = document.getElementById('orderDialog');
+const closeOrderDialog = document.getElementById('closeOrderDialog');
+const orderSummaryList = document.getElementById('orderSummaryList');
+const orderModalTotal = document.getElementById('orderModalTotal');
+const customerName = document.getElementById('customerName');
+const customerPhone = document.getElementById('customerPhone');
+const orderNotes = document.getElementById('orderNotes');
+const sendOrderBtn = document.getElementById('sendOrderBtn');
+const continueShoppingBtn = document.getElementById('continueShoppingBtn');
 
 function formatPrice(value) {
   return `${value} ج.م`;
+}
+
+function getCartTotals() {
+  const totals = { items: 0, amount: 0 };
+
+  for (const [id, qty] of cart.entries()) {
+    const product = products.find((item) => item.id === id);
+    if (!product) {
+      continue;
+    }
+
+    totals.items += qty;
+    totals.amount += qty * product.price;
+  }
+
+  return totals;
 }
 
 function renderProducts() {
@@ -129,8 +145,10 @@ function renderProducts() {
   });
 
   productGrid.innerHTML = filtered
-    .map(
-      (product) => `
+    .map((product) => {
+      const qty = selectedQty.get(product.id) || 1;
+
+      return `
       <article class="product-card reveal visible">
         <div class="product-image-wrap">
           <img src="${product.image}" alt="${product.name}" loading="lazy" />
@@ -144,11 +162,18 @@ function renderProducts() {
             ${product.offer ? '<span class="badge">عرض</span>' : ''}
           </div>
           <p class="price">${formatPrice(product.price)}</p>
-          <button class="btn btn-primary btn-block" type="button" data-add="${product.id}">أضف للطلب</button>
+          <div class="product-footer">
+            <div class="qty-control" aria-label="اختيار الكمية">
+              <button class="qty-btn" type="button" data-action="decrease" data-product-id="${product.id}" aria-label="تقليل الكمية">-</button>
+              <span class="qty-value" data-qty-value="${product.id}">${qty}</span>
+              <button class="qty-btn" type="button" data-action="increase" data-product-id="${product.id}" aria-label="زيادة الكمية">+</button>
+            </div>
+            <button class="btn btn-primary btn-add" type="button" data-add="${product.id}">أضف للسلة</button>
+          </div>
         </div>
       </article>
-    `
-    )
+    `;
+    })
     .join('');
 
   emptyState.hidden = filtered.length > 0;
@@ -173,38 +198,83 @@ function renderMenuImage() {
 }
 
 function updateCartUI() {
-  const totalItems = Array.from(cart.values()).reduce((sum, qty) => sum + qty, 0);
-  cartCount.textContent = String(totalItems);
-  sendOrderBtn.disabled = totalItems === 0;
+  const totals = getCartTotals();
+  cartCount.textContent = String(totals.items);
+  cartTotal.textContent = formatPrice(totals.amount);
+
+  const hasItems = totals.items > 0;
+  orderEmpty.hidden = hasItems;
+  orderBarContent.hidden = !hasItems;
+  checkoutBtn.disabled = !hasItems;
 }
 
 function addToCart(productId) {
+  const qty = selectedQty.get(productId) || 1;
   const current = cart.get(productId) || 0;
-  cart.set(productId, current + 1);
+  cart.set(productId, current + qty);
   updateCartUI();
 }
 
+function updateSelectedQty(productId, delta) {
+  const current = selectedQty.get(productId) || 1;
+  const next = Math.max(1, current + delta);
+  selectedQty.set(productId, next);
+
+  const qtyValue = productGrid.querySelector(`[data-qty-value="${productId}"]`);
+  if (qtyValue) {
+    qtyValue.textContent = String(next);
+  }
+}
+
 function buildWhatsAppMessage() {
-  const selected = products.filter((p) => cart.has(p.id));
-  const lines = ['السلام عليكم، حابب أطلب من بن فراج:', ''];
+  const selectedProducts = products.filter((product) => cart.has(product.id));
+  const lines = ['السلام عليكم، هذا طلبي من بن فراج:', ''];
   let total = 0;
 
-  selected.forEach((product, index) => {
-    const qty = cart.get(product.id);
-    const lineTotal = product.price * qty;
-    total += lineTotal;
-    lines.push(
-      `${index + 1}) ${product.name} - ${product.weight} - ${formatPrice(product.price)} × ${qty} = ${formatPrice(lineTotal)}`
-    );
+  selectedProducts.forEach((product, index) => {
+    const qty = cart.get(product.id) || 0;
+    const subTotal = product.price * qty;
+    total += subTotal;
+
+    lines.push(`${index + 1}) ${product.name}`);
+    lines.push(`الكمية: ${qty} | السعر: ${formatPrice(product.price)} | الإجمالي الفرعي: ${formatPrice(subTotal)}`);
+    lines.push('');
   });
 
-  lines.push('', `الإجمالي: ${formatPrice(total)}`);
+  lines.push(`الإجمالي النهائي: ${formatPrice(total)}`);
+  lines.push(`الاسم: ${customerName.value.trim() || 'غير مذكور'}`);
+  lines.push(`رقم الهاتف: ${customerPhone.value.trim() || 'غير مذكور'}`);
+  lines.push(`الملاحظات: ${orderNotes.value.trim() || 'لا يوجد'}`);
+
   return lines.join('\n');
+}
+
+function renderOrderDialog() {
+  const selectedProducts = products.filter((product) => cart.has(product.id));
+
+  orderSummaryList.innerHTML = selectedProducts
+    .map((product) => {
+      const qty = cart.get(product.id) || 0;
+      const subTotal = product.price * qty;
+
+      return `
+      <article class="order-item">
+        <div>
+          <p><strong>${product.name}</strong></p>
+          <p>الكمية: ${qty} × ${formatPrice(product.price)}</p>
+        </div>
+        <p>${formatPrice(subTotal)}</p>
+      </article>
+    `;
+    })
+    .join('');
+
+  orderModalTotal.textContent = formatPrice(getCartTotals().amount);
 }
 
 chips.forEach((chip) => {
   chip.addEventListener('click', () => {
-    chips.forEach((c) => c.classList.remove('active'));
+    chips.forEach((item) => item.classList.remove('active'));
     chip.classList.add('active');
     activeFilter = chip.dataset.filter || 'الكل';
     renderProducts();
@@ -219,12 +289,38 @@ productGrid.addEventListener('click', (event) => {
     return;
   }
 
-  const productId = target.dataset.add;
-  if (!productId) {
+  const productId = target.dataset.productId;
+  const action = target.dataset.action;
+  if (productId && action === 'increase') {
+    updateSelectedQty(productId, 1);
     return;
   }
 
-  addToCart(productId);
+  if (productId && action === 'decrease') {
+    updateSelectedQty(productId, -1);
+    return;
+  }
+
+  const addProductId = target.dataset.add;
+  if (!addProductId) {
+    return;
+  }
+
+  addToCart(addProductId);
+});
+
+checkoutBtn.addEventListener('click', () => {
+  renderOrderDialog();
+  orderDialog.showModal();
+});
+
+closeOrderDialog.addEventListener('click', () => orderDialog.close());
+continueShoppingBtn.addEventListener('click', () => orderDialog.close());
+
+sendOrderBtn.addEventListener('click', () => {
+  const message = buildWhatsAppMessage();
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  window.open(url, '_blank', 'noopener');
 });
 
 menuPrev.addEventListener('click', () => {
@@ -250,10 +346,10 @@ zoomDialog.addEventListener('click', (event) => {
   }
 });
 
-sendOrderBtn.addEventListener('click', () => {
-  const message = buildWhatsAppMessage();
-  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-  window.open(url, '_blank', 'noopener');
+orderDialog.addEventListener('click', (event) => {
+  if (event.target === orderDialog) {
+    orderDialog.close();
+  }
 });
 
 const revealItems = document.querySelectorAll('.reveal');
