@@ -132,7 +132,9 @@ function renderProducts() {
     .map(
       (product) => `
       <article class="product-card reveal visible">
-        <img src="${product.image}" alt="${product.name}" loading="lazy" />
+        <div class="product-image-wrap">
+          <img src="${product.image}" alt="${product.name}" loading="lazy" />
+        </div>
         <div class="product-content">
           <h3 class="product-title">${product.name}</h3>
           <div class="product-meta">
