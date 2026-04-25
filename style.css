@@ -72,8 +72,10 @@ img {
 }
 
 .logo img {
-  width: 130px;
+  width: auto;
+  max-height: 42px;
   height: auto;
+  object-fit: contain;
 }
 
 .nav {
@@ -304,7 +306,8 @@ img {
 .menu-card img {
   width: 100%;
   min-height: 220px;
-  object-fit: cover;
+  object-fit: contain;
+  background: #fff;
   cursor: zoom-in;
 }
 
@@ -322,6 +325,8 @@ img {
 
 .review-card {
   padding: 1rem;
+  display: grid;
+  gap: 0.45rem;
 }
 
 .review-card h3 {
@@ -335,6 +340,7 @@ img {
 .rating {
   color: #a1662f;
   font-weight: 800;
+  letter-spacing: 1px;
 }
 
 .contact-card {
@@ -453,6 +459,10 @@ img {
 
   .nav {
     display: flex;
+  }
+
+  .logo img {
+    max-height: 54px;
   }
 
   .hero-grid {
