@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900">
+<rect width="900" height="900" fill="#f4e8da"/>
+<rect x="250" y="80" width="400" height="740" rx="36" fill="#2f1d12"/>
+<text x="450" y="210" text-anchor="middle" font-family="Cairo" font-size="70" font-weight="800" fill="#d9b27f">EXTRA</text>
+<rect x="300" y="255" width="300" height="90" rx="45" fill="#fff4e5"/>
+<text x="450" y="318" text-anchor="middle" font-family="Cairo" font-size="46" font-weight="700" fill="#5a3217">بن فراج</text>
+<rect x="300" y="390" width="300" height="140" rx="70" fill="#dec094"/>
+<text x="450" y="478" text-anchor="middle" font-family="Cairo" font-size="70" font-weight="800" fill="#2a160d">سادة</text>
+<text x="450" y="650" text-anchor="middle" font-family="Cairo" font-size="54" fill="#f5e2c7">250 جم</text>
+</svg>

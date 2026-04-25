@@ -1,93 +1,86 @@
-const WHATSAPP_NUMBER = '20100509908';
+const WHATSAPP_NUMBER = '201005009908';
 
 const products = [
   {
     id: 'brazil-sada',
     name: 'بن فراج برازيلي سادة',
     category: 'سادة',
+    blendLabel: 'سادة',
     weight: '250 جم',
     price: 60,
-    image:
-      'https://images.unsplash.com/photo-1521302200778-33500795e128?auto=format&fit=crop&w=900&q=80'
+    image: 'images/package-brazil-sada.svg'
   },
   {
     id: 'brazil-mhwg',
     name: 'بن فراج برازيلي محوج',
     category: 'محوج',
+    blendLabel: 'محوج',
     weight: '250 جم',
     price: 60,
-    image:
-      'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=900&q=80'
+    image: 'images/package-brazil-mohawag.svg'
   },
   {
     id: 'extra-sada',
     name: 'بن فراج إكسترا سادة',
     category: 'سادة',
+    blendLabel: 'سادة',
     weight: '250 جم',
     price: 55,
     offer: true,
-    image:
-      'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=900&q=80'
-  },
-  {
-    id: 'extra-mhwg',
-    name: 'بن فراج إكسترا محوج',
-    category: 'محوج',
-    weight: '250 جم',
-    price: 60,
-    image:
-      'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=900&q=80'
-  },
-  {
-    id: 'turki-sada',
-    name: 'بن فراج تركي سادة',
-    category: 'تركي',
-    weight: '250 جم',
-    price: 50,
-    offer: true,
-    image:
-      'https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=900&q=80'
+    image: 'images/package-extra-sada.svg'
   },
   {
     id: 'turki-mhwg',
     name: 'بن فراج تركي محوج',
     category: 'تركي',
+    blendLabel: 'محوج',
     weight: '250 جم',
     price: 50,
-    image:
-      'https://images.unsplash.com/photo-1509785307050-d4066910ec1e?auto=format&fit=crop&w=900&q=80'
+    image: 'images/package-turki-mohawag.svg'
   },
   {
     id: 'yemeni-sada',
     name: 'بن فراج يمني سادة',
     category: 'سادة',
+    blendLabel: 'سادة',
     weight: '250 جم',
     price: 80,
-    image:
-      'https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?auto=format&fit=crop&w=900&q=80'
-  },
-  {
-    id: 'yemeni-mhwg',
-    name: 'بن فراج يمني محوج',
-    category: 'محوج',
-    weight: '250 جم',
-    price: 85,
-    image:
-      'https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&w=900&q=80'
+    image: 'images/package-yemeni-sada.svg'
   },
   {
     id: 'espresso',
     name: 'بن فراج إسبريسو',
     category: 'إسبريسو',
+    blendLabel: 'سادة',
     weight: '1000 جم',
     price: 300,
-    image:
-      'https://images.unsplash.com/photo-1461988625982-7e46a099bf4f?auto=format&fit=crop&w=900&q=80'
+    image: 'images/package-espresso.svg'
   }
 ];
 
+const reviews = [
+  {
+    name: 'سارة أحمد',
+    text: 'البن التركي ممتاز وريحتُه قوية جدًا.. تجربة راقية فعلًا.',
+    rating: '★★★★★'
+  },
+  {
+    name: 'أحمد جمال',
+    text: 'طلبت برازيلي محوج ووصل بسرعة والطعم ثابت كل مرة.',
+    rating: '❤️❤️❤️❤️❤️'
+  },
+  {
+    name: 'مريم خالد',
+    text: 'الخدمة ممتازة والمنيو متنوع جدًا داخل الفرع.',
+    rating: '★★★★★'
+  }
+];
+
+const menuImages = ['images/menu-1.svg', 'images/menu-2.svg', 'images/menu-3.svg'];
+
 const cart = new Map();
 let activeFilter = 'الكل';
+let menuIndex = 0;
 
 const productGrid = document.getElementById('productGrid');
 const emptyState = document.getElementById('emptyState');
@@ -95,6 +88,13 @@ const searchInput = document.getElementById('searchInput');
 const chips = document.querySelectorAll('.chip');
 const cartCount = document.getElementById('cartCount');
 const sendOrderBtn = document.getElementById('sendOrderBtn');
+const reviewsGrid = document.getElementById('reviewsGrid');
+const menuImage = document.getElementById('menuImage');
+const menuPrev = document.getElementById('menuPrev');
+const menuNext = document.getElementById('menuNext');
+const zoomDialog = document.getElementById('zoomDialog');
+const zoomedMenuImage = document.getElementById('zoomedMenuImage');
+const closeZoom = document.getElementById('closeZoom');
 
 function formatPrice(value) {
   return `${value} ج.م`;
@@ -108,11 +108,12 @@ function renderProducts() {
         ? true
         : activeFilter === 'عروض'
           ? Boolean(product.offer)
-          : product.category === activeFilter;
+          : product.category === activeFilter || product.blendLabel === activeFilter;
 
     const matchesSearch =
       product.name.toLowerCase().includes(searchTerm) ||
-      product.category.toLowerCase().includes(searchTerm);
+      product.category.toLowerCase().includes(searchTerm) ||
+      product.blendLabel.toLowerCase().includes(searchTerm);
 
     return matchesFilter && matchesSearch;
   });
@@ -126,6 +127,7 @@ function renderProducts() {
           <h3 class="product-title">${product.name}</h3>
           <div class="product-meta">
             <span class="badge">${product.category}</span>
+            <span class="badge blend">${product.blendLabel}</span>
             <span class="badge">${product.weight}</span>
             ${product.offer ? '<span class="badge">عرض</span>' : ''}
           </div>
@@ -138,6 +140,24 @@ function renderProducts() {
     .join('');
 
   emptyState.hidden = filtered.length > 0;
+}
+
+function renderReviews() {
+  reviewsGrid.innerHTML = reviews
+    .map(
+      (review) => `
+      <article class="review-card reveal visible">
+        <h3>${review.name}</h3>
+        <p>${review.text}</p>
+        <span class="rating">${review.rating}</span>
+      </article>
+    `
+    )
+    .join('');
+}
+
+function renderMenuImage() {
+  menuImage.src = menuImages[menuIndex];
 }
 
 function updateCartUI() {
@@ -181,15 +201,6 @@ chips.forEach((chip) => {
 
 searchInput.addEventListener('input', renderProducts);
 
-
-const menuTabs = document.querySelectorAll('.menu-tab');
-menuTabs.forEach((tab) => {
-  tab.addEventListener('click', () => {
-    menuTabs.forEach((t) => t.classList.remove('active'));
-    tab.classList.add('active');
-  });
-});
-
 productGrid.addEventListener('click', (event) => {
   const target = event.target;
   if (!(target instanceof HTMLElement)) {
@@ -202,6 +213,29 @@ productGrid.addEventListener('click', (event) => {
   }
 
   addToCart(productId);
+});
+
+menuPrev.addEventListener('click', () => {
+  menuIndex = (menuIndex - 1 + menuImages.length) % menuImages.length;
+  renderMenuImage();
+});
+
+menuNext.addEventListener('click', () => {
+  menuIndex = (menuIndex + 1) % menuImages.length;
+  renderMenuImage();
+});
+
+menuImage.addEventListener('click', () => {
+  zoomedMenuImage.src = menuImages[menuIndex];
+  zoomDialog.showModal();
+});
+
+closeZoom.addEventListener('click', () => zoomDialog.close());
+
+zoomDialog.addEventListener('click', (event) => {
+  if (event.target === zoomDialog) {
+    zoomDialog.close();
+  }
 });
 
 sendOrderBtn.addEventListener('click', () => {
@@ -226,4 +260,6 @@ const observer = new IntersectionObserver(
 revealItems.forEach((item) => observer.observe(item));
 
 renderProducts();
+renderReviews();
+renderMenuImage();
 updateCartUI();

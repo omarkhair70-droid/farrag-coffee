@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+<rect width="1200" height="800" fill="#301b11"/>
+<rect x="100" y="80" width="1000" height="640" rx="24" fill="#f8f0e4"/>
+<text x="600" y="180" text-anchor="middle" font-family="Cairo" font-size="72" font-weight="800" fill="#3d2416">منيو المشروبات الباردة</text>
+<text x="600" y="280" text-anchor="middle" font-family="Cairo" font-size="44" fill="#6d4527">ايس لاتيه • ايس موكا • فرابيه</text>
+<text x="600" y="360" text-anchor="middle" font-family="Cairo" font-size="44" fill="#6d4527">سموثي • ميلك شيك • عصائر</text>
+</svg>

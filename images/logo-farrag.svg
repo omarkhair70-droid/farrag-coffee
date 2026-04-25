@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 120" role="img" aria-label="Farrag Coffee logo">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0" stop-color="#1e120c"/>
+      <stop offset="1" stop-color="#6b3f1f"/>
+    </linearGradient>
+  </defs>
+  <rect width="360" height="120" rx="20" fill="#f7f1e8"/>
+  <circle cx="58" cy="60" r="36" fill="url(#g)"/>
+  <path d="M40 60c9-15 27-15 36 0-9 15-27 15-36 0Z" fill="#d3a66a"/>
+  <text x="110" y="56" font-family="Cairo, sans-serif" font-weight="800" font-size="36" fill="#2a160d">بن فراج</text>
+  <text x="110" y="84" font-family="Cairo, sans-serif" font-weight="600" font-size="20" fill="#8a5419">Farrag Coffee</text>
+</svg>

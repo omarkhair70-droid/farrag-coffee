@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900">
+<rect width="900" height="900" fill="#efe0ce"/>
+<rect x="250" y="80" width="400" height="740" rx="36" fill="#40271a"/>
+<rect x="280" y="120" width="340" height="230" rx="20" fill="#f6e4cc"/>
+<text x="450" y="225" text-anchor="middle" font-family="Cairo" font-size="64" font-weight="800" fill="#40271a">بن فراج</text>
+<text x="450" y="290" text-anchor="middle" font-family="Cairo" font-size="48" font-weight="700" fill="#8a5419">برازيلي</text>
+<rect x="300" y="390" width="300" height="140" rx="70" fill="#b47a3e"/>
+<text x="450" y="478" text-anchor="middle" font-family="Cairo" font-size="62" font-weight="800" fill="#fff6ea">محوج</text>
+<text x="450" y="650" text-anchor="middle" font-family="Cairo" font-size="54" fill="#f5e2c7">250 جم</text>
+</svg>
